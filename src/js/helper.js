@@ -48,7 +48,7 @@ export default class Helper {
         tdRefine.setAttribute("id", `game_${i}_refine`)
         tdRefine.setAttribute("class", "td-refine")
         tdRefine.setAttribute("data-game", i)
-        tdRefine.innerHTML = `<input type="text" class="refine-text" id="refine_text_${i}" ><button type="button" data-game="${i}" class="refine-button"><i class="fal fa-sync"></i></button>`
+        tdRefine.innerHTML = `<input type="text" class="refine-text" id="refine_text_${i}" ><a type="button" data-game="${i}" class="refine-button"><i class="fal fa-sync"></i></button>`
         return tdRefine
     }
 
@@ -196,7 +196,7 @@ export default class Helper {
                 document.querySelector(".generate").style.display = "inline-block"
             }
 
-            document.querySelector(".clear-games").style.display = "inline-block"
+            document.querySelector(".clear-games").style.display = "block"
 
         }
 
@@ -252,13 +252,21 @@ export default class Helper {
         const numArray = []
 
         for (let j = 1; j <= 7; j++) {
-            const id = `game_${game}_${j}`
             let randomNum = Helper.randomiseWithinRange(min, max)
             while (numArray.includes(randomNum)) {
                 randomNum = Helper.randomiseWithinRange(min, max)
             }
             numArray.push(randomNum)
-            document.getElementById(id).innerHTML = randomNum
+        }
+
+
+        numArray.sort(function (a, b) {
+            return a - b;
+        })
+
+        for (let j = 1; j <= 7; j++) {
+            const id = `game_${game}_${j}`
+            document.getElementById(id).innerHTML = numArray[j-1]
         }
 
         Config.exportObject[`game${game}`].numbers = numArray
@@ -307,22 +315,23 @@ export default class Helper {
                 await Filesystem.writeFile({
                     path: file,
                     data: base64,
-                    directory: Directory.Data,
+                    directory: Directory.External,
                     //encoding: Encoding.UTF8,
                 }).then(() => {
                     Filesystem.getUri({
-                        directory: Directory.Data,
+                        directory: Directory.External,
                         path: file
                     }).then((result) => {
                         const path = result.uri
-                        cordova.plugins.fileOpener2.open(
-                            path,
-                            'application/json',
-                            {
-                                error: () => alert(`File cannot be opened. Please try installing a JSON Viewer.`),
-                                success: () => { }
-                            }
-                        )
+                        alert(`Data file saved to: ${path}`)
+                        // cordova.plugins.fileOpener2.open(
+                        //     path,
+                        //     'application/json',
+                        //     {
+                        //         error: () => alert(`File cannot be opened. Please try installing a JSON Viewer.`),
+                        //         success: () => { }
+                        //     }
+                        // )
 
                     }, (error) => {
                         alert(error)
@@ -332,8 +341,7 @@ export default class Helper {
             catch (err) {
                 alert(err)
             }
-        }
-        else {
+        }else {
             FileSaver.saveAs(blob, file)
         }
     }

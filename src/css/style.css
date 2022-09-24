@@ -18,7 +18,12 @@ ul {
   padding: 0;
 }
 a {
-  display: inline-block;
+  cursor: pointer;
+  color: unset;
+  text-decoration: none;
+  font-weight: 500;
+  display: block;
+  font-size: 20px;
 }
 .text-input {
   height: 30px;
@@ -127,7 +132,7 @@ body header ul li.page-title img,
 body .page-header ul li.page-title img,
 body footer ul li.page-title img,
 body .page-footer ul li.page-title img {
-  height: 1.2rem;
+  height: 20px;
   position: relative;
   top: 3px;
 }
@@ -197,6 +202,10 @@ body .page-header {
   box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.39);
   border-bottom: 1px solid #9b9090;
 }
+body header ul,
+body .page-header ul {
+  justify-content: center;
+}
 body footer,
 body .page-footer {
   left: 0;
@@ -234,6 +243,7 @@ body main .body .inputs .fa-sync {
 }
 body main .body .numbers {
   margin-top: 10px;
+  padding-bottom: 60px;
 }
 body main .body .numbers table {
   width: 100%;
@@ -287,15 +297,8 @@ body main .body .numbers table tr:not(.header) td.td-refine {
   align-items: center;
 }
 body main .body .numbers table tr:not(.header) td.td-refine input,
-body main .body .numbers table tr:not(.header) td.td-refine button {
-  height: 27px;
-}
-body main .body .numbers table tr:not(.header) td.td-refine button {
-  white-space: nowrap;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #000;
+body main .body .numbers table tr:not(.header) td.td-refine a {
+  height: 28px;
 }
 body main .body .numbers table tr:not(.header) td.td-refine .refine-text {
   margin-right: 5px;
@@ -312,7 +315,8 @@ body main .body .numbers table tr.header th {
   font-family: "Roboto", "Quicksand", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #666;
 }
-body main .body .numbers table tr.header th .pb-toggle i {
+body main .body .numbers table tr.header th .pb-toggle {
+  display: inline-block;
   font-size: 13px;
 }
 body main .body .import-filename {

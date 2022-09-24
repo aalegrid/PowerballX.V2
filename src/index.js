@@ -5,12 +5,32 @@ import { Config } from './js/config'
 import AppIcon from './img/logo.svg'
 
 
-Helper.addGlobalEventListener('click', '.generate i', e => {
+document.querySelector('.generate').addEventListener("click", e => {
     Helper.renderNumbers()
 })
 
-Helper.addGlobalEventListener('click', '.save button i', e => {
+document.querySelector('.clear-games').addEventListener("click", e => {
+    document.querySelector(".numbers").innerHTML = ""
+    document.querySelector(".save").style.display = "none"
+    document.querySelector(".number-games").value = ""
+    document.querySelector(".clear-games").style.display = "none"
+    document.querySelector(".generate").style.display = "none"
+})
+
+document.querySelector('.save a').addEventListener("click", e => {
     Helper.saveData()
+})
+
+document.querySelector('.clear-import a').addEventListener("click", e => {
+    document.querySelector(".import-filename").style.display = "none"
+    document.querySelector(".data-filename").style.display = ''
+    document.querySelector("#importJson").value = ''
+    document.querySelector(".clear-import").closest("li").style.display = "none"
+    document.querySelector(".load-data").closest("li").style.display = "none"
+})
+
+document.querySelector('.load-data a').addEventListener("click", e => {
+    Helper.importData()
 })
 
 
@@ -25,18 +45,19 @@ Helper.addGlobalEventListener('change', '.number-games', e => {
     }
 })
 
-Helper.addGlobalEventListener('click', '.clear-games i', e => {
-    document.querySelector(".numbers").innerHTML = ""
-    document.querySelector(".save").style.display = "none"
-    document.querySelector(".number-games").value = ""
-    document.querySelector(".clear-games").style.display = "none"
-    document.querySelector(".generate").style.display = "none"
-})
-
 Helper.addGlobalEventListener('change', '#importJson', e => {
     if (e.target.files.length > 0) {
+
+        const file = e.target.files[0].name,
+            ext = file.split('.')[1].toLowerCase()
+
+        if (ext !== 'json') {
+            alert('Invalid input file.')
+            return
+        }
+        
         document.querySelector(".import-filename").style.display = "block"
-        document.querySelector(".data-filename").innerHTML = e.target.files[0].name
+        document.querySelector(".data-filename").innerHTML = file
         document.querySelector(".clear-import").closest("li").style.display = "block"
         document.querySelector(".load-data").closest("li").style.display = "block"
     }
@@ -45,18 +66,6 @@ Helper.addGlobalEventListener('change', '#importJson', e => {
         document.querySelector(".clear-import").closest("li").style.display = "none"
         document.querySelector(".load-data").closest("li").style.display = "none"
     }
-})
-
-Helper.addGlobalEventListener('click', '.clear-import button i', e => {
-    document.querySelector(".import-filename").style.display = "none"
-    document.querySelector(".data-filename").style.display = ''
-    document.querySelector("#importJson").value = ''
-    document.querySelector(".clear-import").closest("li").style.display = "none"
-    document.querySelector(".load-data").closest("li").style.display = "none"
-})
-
-Helper.addGlobalEventListener('click', '.load-data button i', e => {
-    Helper.importData()
 })
 
 Helper.addGlobalEventListener('change', '.pb-select', e => {
@@ -114,4 +123,6 @@ document.body.onload = () => {
         //startup()
         setStatusBarToBlack()
     }
+
+
 }

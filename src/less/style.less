@@ -40,7 +40,12 @@ ul {
 }
 
 a {
-  display: inline-block;
+  cursor: pointer;
+  color: unset;
+  text-decoration: none;
+  font-weight: 500;
+  display: block;
+  font-size: 20px;
 }
 
 .text-input {
@@ -131,7 +136,7 @@ body {
           overflow: hidden;
 
           img {
-            height: 1.2rem;
+            height: 20px;
             position: relative;
             top: 3px;
           }
@@ -190,6 +195,10 @@ body {
     -moz-box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.39);
     box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.39);
     border-bottom: 1px solid @color-gray;
+
+    ul {
+      justify-content: center;
+    }
   }
 
   footer,
@@ -234,6 +243,7 @@ body {
 
       .numbers {
         margin-top: 10px;
+        padding-bottom: 60px;
 
         table {
           width: 100%;
@@ -292,16 +302,8 @@ body {
               align-items: center;
 
               input,
-              button {
-                height: 27px;
-              }
-
-              button {
-                white-space: nowrap;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                color: #000;
+              a {
+                height: 28px;
               }
 
               .refine-text {
@@ -323,9 +325,9 @@ body {
               color: #666;
 
               .pb-toggle {
-                i {
-                  font-size: 13px;
-                }
+                display: inline-block;
+                font-size: 13px;
+
               }
             }
           }
