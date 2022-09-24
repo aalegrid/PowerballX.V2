@@ -1,0 +1,352 @@
+@font-default: "Quicksand", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-secondary: "Roboto", "Quicksand", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@color-gray: #9b9090;
+@color-black: #000;
+@color-white: #fff;
+@color-light: #00aeef;
+@color-dark: #0054a6;
+
+@button-bg: transparent;
+@button-text: #fff;
+@box-border: #999;
+
+@clear-button-bg: transparent;
+@clear-button-text: @button-text;
+
+@pb-bg: black;
+@pb-text: white;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  display: inline-block;
+}
+
+.text-input {
+  height: 30px;
+  padding: 4px;
+  font-size: 14px;
+  border: 0;
+  border-bottom: 1px solid @box-border;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  width: 60px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.button {
+  background: @button-bg;
+  border: 0;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: @button-text;
+}
+
+.gradient(@color1, @color2) {
+  background: linear-gradient(@color1, @color2);
+}
+
+input[type="text"],
+input[type="number"] {
+  .text-input();
+}
+
+button,
+.custom-file-upload {
+  .button();
+}
+
+[class^="clear-"] button {
+  background-color: @clear-button-bg;
+  color: @clear-button-text;
+}
+
+body {
+  font-family: @font-default;
+
+  .header-logo {
+    h3 {
+      font-weight: 700;
+      font-size: 20px;
+      margin: 0 0 8px 0;
+    }
+  }
+
+  header,
+  .page-header,
+  footer,
+  .page-footer {
+    color: @color-white;
+    font-size: 1.15em;
+    position: fixed;
+    width: 100vw;
+    z-index: 2;
+    padding: 0.75rem 1.5rem;
+    background: @color-dark;
+    background: linear-gradient(@color-light, @color-dark);
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 2rem;
+      white-space: nowrap;
+
+      li {
+        display: block;
+
+        &.copy {
+          text-align: left;
+          font-size: 0.75rem;
+        }
+
+        &.page-title {
+          text-align: center;
+          overflow: hidden;
+
+          img {
+            height: 1.2rem;
+            position: relative;
+            top: 3px;
+          }
+
+          .app-name {
+            position: relative;
+            // top: -6px;
+            padding-left: 0.3rem;
+          }
+
+          &.align-left {
+            text-align: left;
+          }
+
+          i {
+            font-size: 1rem;
+            position: relative;
+            top: -1px;
+          }
+
+          .fa-folder {
+            font-size: 1.2rem;
+            top: 0;
+          }
+        }
+
+        &.user-info {
+          font-size: 1rem;
+          overflow: hidden;
+          height: 2rem;
+          line-height: 2rem;
+
+          i {
+            margin-left: 0.35rem;
+          }
+        }
+
+        a {
+          color: @color-white;
+          text-decoration: none;
+
+          &.disabled {
+            color: #666;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+
+  header,
+  .page-header {
+    left: 0;
+    top: 0;
+    -webkit-box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.39);
+    -moz-box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.39);
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.39);
+    border-bottom: 1px solid @color-gray;
+  }
+
+  footer,
+  .page-footer {
+    left: 0;
+    bottom: 0;
+    -webkit-box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.39);
+    -moz-box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.39);
+    box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.39);
+    border-top: 1px solid @color-gray;
+
+    input[type="file"] {
+      display: none;
+    }
+  }
+
+  main {
+    min-height: 100vh;
+
+    .body {
+      padding: 4.5rem 1.5rem;
+
+      .inputs {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        label,
+        input {
+          margin-right: 6px;
+        }
+
+        i {
+          font-size: 20px;
+        }
+
+        .fa-sync {
+          position: relative;
+          top: 2px;
+        }
+      }
+
+      .numbers {
+        margin-top: 10px;
+
+        table {
+          width: 100%;
+
+          tr:not(.header) {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            td {
+              width: 2rem;
+              height: 2rem;
+              border: 1px solid @box-border;
+              border-radius: 50%;
+              margin: 8px 4px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-weight: 500;
+            }
+
+            td.td-pb {
+              background: @pb-bg;
+              color: @pb-text;
+              font-weight: bold;
+              width: 2.2rem;
+
+              select {
+                border: 0;
+                background: transparent;
+                color: @pb-text;
+                text-align: end;
+                outline: none;
+
+                option {
+                  background-color: white;
+                  color: black;
+                  font-weight: 400;
+                }
+              }
+
+              select + span::before {
+                content: "\f107";
+                font-family: "Font Awesome 5 Pro";
+              }
+            }
+
+            td.td-refine {
+              border: 0;
+              width: auto;
+              padding: 0;
+              margin: 0;
+              white-space: nowrap;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              input,
+              button {
+                height: 27px;
+              }
+
+              button {
+                white-space: nowrap;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: #000;
+              }
+
+              .refine-text {
+                margin-right: 5px;
+              }
+            }
+          }
+
+          tr.header {
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px dotted @box-border;
+            margin-bottom: 3px;
+            padding-bottom: 6px;
+
+            th {
+              font-weight: 400;
+              font-family: @font-secondary;
+              color: #666;
+
+              .pb-toggle {
+                i {
+                  font-size: 13px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .import-filename {
+        position: fixed;
+        bottom: 55px;
+        left: 0;
+        background-color: #ebebeb;;
+        padding: 8px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        width: 100%;
+        height: 40px;
+
+        .data-filename {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

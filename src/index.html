@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="robots" content="noindex">
+    <title>PowerballX</title>
+</head>
+
+<body style="visibility: hidden;">
+    <header>
+        <ul>
+            <li class="page-title"><img src="./img/logo.svg"><span class="app-name">Powerball</span></li>
+        </ul>
+    </header>
+
+    <main>
+        <div class="body">
+            <div class="inputs">
+                <div>
+                    <label>Games </label>
+                    <input class="number-games" type="number">
+                    <a class="generate" style="display:none"><i class="fal fa-sync"></i></a>
+                </div>
+                <div><a class="clear-games" style="display:none"><i class="fal fa-times"></i></a></div>
+            </div>
+            <div class="numbers"></div>
+            <div class="import-filename" style="display:none"><i class="fal fa-file-alt"></i> <span
+                    class="data-filename"></span></div>
+        </div>
+    </main>
+
+    <footer>
+        <ul>
+            <li style="display:none" class="save"><button type="button"><i class="fal fa-save"></i></button></li>
+            <li><label class="custom-file-upload"><input type="file" id="importJson"><i
+                        class="fal fa-upload"></i></label></li>
+            <li class="load-data" style="display:none"><button><i class="fal fa-check"></i></button></li>
+            <li style="display:none" class="clear-import"> <button><i class="fal fa-times"></i></button></li>
+        </ul>
+    </footer>
+</body>
+
+</html>

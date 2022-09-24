@@ -1,0 +1,6 @@
+{
+  "appId": "com.Alx.PowerballX",
+  "appName": "PowerballX",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

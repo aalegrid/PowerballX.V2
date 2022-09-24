@@ -1,0 +1,331 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+a {
+  display: inline-block;
+}
+.text-input {
+  height: 30px;
+  padding: 4px;
+  font-size: 14px;
+  border: 0;
+  border-bottom: 1px solid #999;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  width: 60px;
+  text-align: center;
+  font-weight: 500;
+}
+.button {
+  background: transparent;
+  border: 0;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+}
+input[type="text"],
+input[type="number"] {
+  height: 30px;
+  padding: 4px;
+  font-size: 14px;
+  border: 0;
+  border-bottom: 1px solid #999;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  width: 60px;
+  text-align: center;
+  font-weight: 500;
+}
+button,
+.custom-file-upload {
+  background: transparent;
+  border: 0;
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+}
+[class^="clear-"] button {
+  background-color: transparent;
+  color: #fff;
+}
+body {
+  font-family: "Quicksand", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+body .header-logo h3 {
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0 0 8px 0;
+}
+body header,
+body .page-header,
+body footer,
+body .page-footer {
+  color: #fff;
+  font-size: 1.15em;
+  position: fixed;
+  width: 100vw;
+  z-index: 2;
+  padding: 0.75rem 1.5rem;
+  background: #0054a6;
+  background: linear-gradient(#00aeef, #0054a6);
+}
+body header ul,
+body .page-header ul,
+body footer ul,
+body .page-footer ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+  white-space: nowrap;
+}
+body header ul li,
+body .page-header ul li,
+body footer ul li,
+body .page-footer ul li {
+  display: block;
+}
+body header ul li.copy,
+body .page-header ul li.copy,
+body footer ul li.copy,
+body .page-footer ul li.copy {
+  text-align: left;
+  font-size: 0.75rem;
+}
+body header ul li.page-title,
+body .page-header ul li.page-title,
+body footer ul li.page-title,
+body .page-footer ul li.page-title {
+  text-align: center;
+  overflow: hidden;
+}
+body header ul li.page-title img,
+body .page-header ul li.page-title img,
+body footer ul li.page-title img,
+body .page-footer ul li.page-title img {
+  height: 1.2rem;
+  position: relative;
+  top: 3px;
+}
+body header ul li.page-title .app-name,
+body .page-header ul li.page-title .app-name,
+body footer ul li.page-title .app-name,
+body .page-footer ul li.page-title .app-name {
+  position: relative;
+  padding-left: 0.3rem;
+}
+body header ul li.page-title.align-left,
+body .page-header ul li.page-title.align-left,
+body footer ul li.page-title.align-left,
+body .page-footer ul li.page-title.align-left {
+  text-align: left;
+}
+body header ul li.page-title i,
+body .page-header ul li.page-title i,
+body footer ul li.page-title i,
+body .page-footer ul li.page-title i {
+  font-size: 1rem;
+  position: relative;
+  top: -1px;
+}
+body header ul li.page-title .fa-folder,
+body .page-header ul li.page-title .fa-folder,
+body footer ul li.page-title .fa-folder,
+body .page-footer ul li.page-title .fa-folder {
+  font-size: 1.2rem;
+  top: 0;
+}
+body header ul li.user-info,
+body .page-header ul li.user-info,
+body footer ul li.user-info,
+body .page-footer ul li.user-info {
+  font-size: 1rem;
+  overflow: hidden;
+  height: 2rem;
+  line-height: 2rem;
+}
+body header ul li.user-info i,
+body .page-header ul li.user-info i,
+body footer ul li.user-info i,
+body .page-footer ul li.user-info i {
+  margin-left: 0.35rem;
+}
+body header ul li a,
+body .page-header ul li a,
+body footer ul li a,
+body .page-footer ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+body header ul li a.disabled,
+body .page-header ul li a.disabled,
+body footer ul li a.disabled,
+body .page-footer ul li a.disabled {
+  color: #666;
+  pointer-events: none;
+}
+body header,
+body .page-header {
+  left: 0;
+  top: 0;
+  -webkit-box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.39);
+  -moz-box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.39);
+  box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.39);
+  border-bottom: 1px solid #9b9090;
+}
+body footer,
+body .page-footer {
+  left: 0;
+  bottom: 0;
+  -webkit-box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.39);
+  -moz-box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.39);
+  box-shadow: 0px -3px 4px 0px rgba(0, 0, 0, 0.39);
+  border-top: 1px solid #9b9090;
+}
+body footer input[type="file"],
+body .page-footer input[type="file"] {
+  display: none;
+}
+body main {
+  min-height: 100vh;
+}
+body main .body {
+  padding: 4.5rem 1.5rem;
+}
+body main .body .inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body main .body .inputs label,
+body main .body .inputs input {
+  margin-right: 6px;
+}
+body main .body .inputs i {
+  font-size: 20px;
+}
+body main .body .inputs .fa-sync {
+  position: relative;
+  top: 2px;
+}
+body main .body .numbers {
+  margin-top: 10px;
+}
+body main .body .numbers table {
+  width: 100%;
+}
+body main .body .numbers table tr:not(.header) {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+body main .body .numbers table tr:not(.header) td {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #999;
+  border-radius: 50%;
+  margin: 8px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+body main .body .numbers table tr:not(.header) td.td-pb {
+  background: black;
+  color: white;
+  font-weight: bold;
+  width: 2.2rem;
+}
+body main .body .numbers table tr:not(.header) td.td-pb select {
+  border: 0;
+  background: transparent;
+  color: white;
+  text-align: end;
+  outline: none;
+}
+body main .body .numbers table tr:not(.header) td.td-pb select option {
+  background-color: white;
+  color: black;
+  font-weight: 400;
+}
+body main .body .numbers table tr:not(.header) td.td-pb select + span::before {
+  content: "\f107";
+  font-family: "Font Awesome 5 Pro";
+}
+body main .body .numbers table tr:not(.header) td.td-refine {
+  border: 0;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body main .body .numbers table tr:not(.header) td.td-refine input,
+body main .body .numbers table tr:not(.header) td.td-refine button {
+  height: 27px;
+}
+body main .body .numbers table tr:not(.header) td.td-refine button {
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+}
+body main .body .numbers table tr:not(.header) td.td-refine .refine-text {
+  margin-right: 5px;
+}
+body main .body .numbers table tr.header {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px dotted #999;
+  margin-bottom: 3px;
+  padding-bottom: 6px;
+}
+body main .body .numbers table tr.header th {
+  font-weight: 400;
+  font-family: "Roboto", "Quicksand", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #666;
+}
+body main .body .numbers table tr.header th .pb-toggle i {
+  font-size: 13px;
+}
+body main .body .import-filename {
+  position: fixed;
+  bottom: 55px;
+  left: 0;
+  background-color: #ebebeb;
+  padding: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  width: 100%;
+  height: 40px;
+}
+body main .body .import-filename .data-filename {
+  font-weight: 500;
+}
