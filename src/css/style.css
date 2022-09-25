@@ -35,7 +35,7 @@ a {
   -moz-appearance: none;
   appearance: none;
   outline: none;
-  width: 60px;
+  width: 50px;
   text-align: center;
   font-weight: 500;
 }
@@ -49,7 +49,8 @@ a {
   color: #fff;
 }
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="search"] {
   height: 30px;
   padding: 4px;
   font-size: 14px;
@@ -59,7 +60,7 @@ input[type="number"] {
   -moz-appearance: none;
   appearance: none;
   outline: none;
-  width: 60px;
+  width: 50px;
   text-align: center;
   font-weight: 500;
 }
@@ -221,6 +222,7 @@ body .page-footer input[type="file"] {
 }
 body main {
   min-height: 100vh;
+  min-width: 380px;
 }
 body main .body {
   padding: 4.5rem 1.5rem;
@@ -230,14 +232,8 @@ body main .body .inputs {
   justify-content: space-between;
   align-items: center;
 }
-body main .body .inputs label,
-body main .body .inputs input {
-  margin-right: 6px;
-}
 body main .body .inputs i {
   font-size: 20px;
-}
-body main .body .inputs .fa-sync {
   position: relative;
   top: 2px;
 }
@@ -245,81 +241,83 @@ body main .body .numbers {
   margin-top: 10px;
   padding-bottom: 60px;
 }
-body main .body .numbers table {
-  width: 100%;
-}
-body main .body .numbers table tr:not(.header) {
+body main .body .numbers div {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
-body main .body .numbers table tr:not(.header) td {
+body main .body .numbers div.header {
+  justify-content: space-between;
+}
+body main .body .numbers div.header span {
   width: 2rem;
   height: 2rem;
-  border: 1px solid #999;
+  margin: 8px 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+}
+body main .body .numbers div.header span.refine {
+  width: 85px;
+}
+body main .body .numbers div.header span .powerball-toggle {
+  font-size: 14px;
+  position: relative;
+  left: 10px;
+}
+body main .body .numbers div.game .number,
+body main .body .numbers div.game .powerball {
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   margin: 8px 4px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 500;
+  border: 1px solid #ccc;
 }
-body main .body .numbers table tr:not(.header) td.td-pb {
-  background: black;
+body main .body .numbers div.game .number {
+  background: #6c6c7d;
+  background: radial-gradient(circle, #6c6c7d 8%, #b6b6c6 97%);
+  border: 1px solid #999;
+  color: #fff;
+}
+body main .body .numbers div.game .powerball {
   color: white;
   font-weight: bold;
   width: 2.2rem;
+  background: #7373ec;
+  background: radial-gradient(circle, #7373ec 8%, #000006 75%);
 }
-body main .body .numbers table tr:not(.header) td.td-pb select {
+body main .body .numbers div.game .powerball select {
   border: 0;
   background: transparent;
   color: white;
   text-align: end;
   outline: none;
 }
-body main .body .numbers table tr:not(.header) td.td-pb select option {
+body main .body .numbers div.game .powerball select option {
   background-color: white;
   color: black;
   font-weight: 400;
 }
-body main .body .numbers table tr:not(.header) td.td-pb select + span::before {
-  content: "\f107";
-  font-family: "Font Awesome 5 Pro";
-}
-body main .body .numbers table tr:not(.header) td.td-refine {
-  border: 0;
-  width: auto;
-  padding: 0;
-  margin: 0;
+body main .body .numbers div.game .refine {
   white-space: nowrap;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-body main .body .numbers table tr:not(.header) td.td-refine input,
-body main .body .numbers table tr:not(.header) td.td-refine a {
+body main .body .numbers div.game .refine input,
+body main .body .numbers div.game .refine a {
   height: 28px;
 }
-body main .body .numbers table tr:not(.header) td.td-refine .refine-text {
+body main .body .numbers div.game .refine input {
   margin-right: 5px;
+  width: 60px;
 }
-body main .body .numbers table tr.header {
-  display: flex;
-  justify-content: space-around;
-  border-bottom: 1px dotted #999;
-  margin-bottom: 3px;
-  padding-bottom: 6px;
-}
-body main .body .numbers table tr.header th {
-  font-weight: 400;
-  font-family: "Roboto", "Quicksand", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #666;
-}
-body main .body .numbers table tr.header th .pb-toggle {
-  display: inline-block;
-  font-size: 13px;
-}
-body main .body .import-filename {
+body main .body .import-file {
   position: fixed;
   bottom: 55px;
   left: 0;
@@ -328,8 +326,17 @@ body main .body .import-filename {
   border: 1px solid #ccc;
   font-size: 14px;
   width: 100%;
-  height: 40px;
+  height: 65px;
+  align-items: center;
+  padding-left: 20px;
 }
-body main .body .import-filename .data-filename {
+body main .body .import-file .data-file {
   font-weight: 500;
+  padding-left: 5px;
+}
+@media only screen and (max-width: 600px) {
+  body main .body .numbers div.game .number,
+  body main .body .numbers div.game .powerball {
+    margin: 4px 1px;
+  }
 }

@@ -17,62 +17,55 @@ export default class Helper {
     }
 
     static buildPBDropdown = (i, PB) => {
-
         if (!Config.isPowerballEditable) {
             const span = document.createElement("span")
             span.innerHTML = PB
             return span
         }
-        const pbSelect = document.createElement("select")
-        pbSelect.setAttribute("id", `game_${i}_pb_select`)
-        pbSelect.setAttribute("data-game", i)
-        pbSelect.setAttribute("class", "pb-select")
-
+        const selectElement = document.createElement("select")
+        selectElement.setAttribute("data-game", i)
+        selectElement.setAttribute("class", "powerball-select")
         for (let k = Config.powerball.min; k <= Config.powerball.max; k++) {
             const option = document.createElement("option")
-            option.value = k;
-            option.innerHTML = k;
-
+            option.value = k
+            option.innerHTML = k
             if (k == PB) {
                 option.setAttribute("selected", "")
             }
-            pbSelect.append(option)
-
+            selectElement.append(option)
         }
-
-        return pbSelect
+        return selectElement
     }
 
     static buildRefineInput = (i) => {
-        const tdRefine = document.createElement("td")
+        const tdRefine = document.createElement("span")
         tdRefine.setAttribute("id", `game_${i}_refine`)
-        tdRefine.setAttribute("class", "td-refine")
+        tdRefine.setAttribute("class", "refine")
         tdRefine.setAttribute("data-game", i)
-        tdRefine.innerHTML = `<input type="text" class="refine-text" id="refine_text_${i}" ><a type="button" data-game="${i}" class="refine-button"><i class="fal fa-sync"></i></button>`
+        tdRefine.innerHTML = `<input type="search" id="refine_text_${i}" ><a type="button" data-game="${i}" class="refine-button"><i class="fal fa-sync"></i></button>`
         return tdRefine
     }
 
     static renderNumbers = (json) => {
 
         const data = json,
-            numGames = data ? parseInt(data.games) : document.querySelector(".number-games").value,
-            mainDiv = document.querySelector(".numbers")
+            gameCount = data ? parseInt(data.games) : document.querySelector(".game-count").value,
+            numbersDiv = document.querySelector(".numbers")
 
         if (!data) {
-            if (!numGames) {
-                alert(`Please input number of games to be generated.`)
+            if (!gameCount) {
+                alert(`Please input number of games to be renderd.`)
                 return;
             }
-            if (numGames < 0 || numGames > 100) {
+            if (gameCount < 0 || gameCount > 100) {
                 alert(`Valid number of games is from 1 to 100.`)
                 return;
             }
-
         }
 
 
         if (data) {
-            document.querySelector(".number-games").value = numGames
+            document.querySelector(".game-count").value = gameCount
             if (data.isPowerballEditable) {
                 Config.isPowerballEditable = true
                 Config.exportObject.isPowerballEditable = true
@@ -83,30 +76,28 @@ export default class Helper {
             }
         }
 
-        if (numGames > 0) {
+        if (gameCount > 0) {
+
+            const d = new Date(),
+            stamp = d.toISOString(),
+            powerballArray = [],
+            numbersHeader = document.createElement("div")
 
             document.querySelector(".save").style.display = "block"
-            const d = new Date()
-            const stamp = d.toISOString()
-            mainDiv.innerHTML = ""
-
-            const table = document.createElement("table")
-            mainDiv.appendChild(table)
-
+            numbersDiv.innerHTML = ""
             Config.exportObject.title = "Powerball Game Generator"
             Config.exportObject.dateStamp = stamp
-            Config.exportObject.games = numGames
+            Config.exportObject.games = gameCount
 
-            const powerballArray = []
+            numbersHeader.setAttribute('class', 'header')
+            numbersHeader.innerHTML = `<span>1</span> <span>2</span> <span>3</span> <span>4</span> <span>5</span> <span>6</span> <span>7</span> <span><a class="powerball-toggle"><i class="fal fa-pencil" style="color:#ccc"></i></a></span> <span class="refine">Refine</span>`
+            numbersDiv.appendChild(numbersHeader)
 
-            const trHeader = document.createElement("tr")
-            trHeader.setAttribute('class', 'header')
-            trHeader.innerHTML = `<th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th> <th>6</th> <th>7</th> <th>PB <a class="pb-toggle"><i class="fal fa-pencil" style="color:#ccc"></i></a></th> <th>Refine</th>`
-            table.appendChild(trHeader)
+            for (let i = 1; i <= gameCount; i++) {
 
-            for (let i = 1; i <= numGames; i++) {
-                const game = data ? data[`game${i}`] : null
-                const numArray = []
+                const game = data ? data[`game${i}`] : null,
+                numArray = []
+
                 for (let j = 1; j <= 7; j++) {
                     let randomNum = data ? game.numbers[j - 1] : Helper.randomiseWithinRange(Config.number.min, Config.number.max)
                     if (!data) {
@@ -123,9 +114,7 @@ export default class Helper {
                 })
 
                 Config.exportObject[`game${i}`] = {}
-
                 Config.exportObject[`game${i}`].numbers = []
-
                 Config.exportObject[`game${i}`].numbers = numArray
 
                 let PB = data ? game.powerball : Helper.randomiseWithinRange(Config.powerball.min, Config.powerball.max)
@@ -144,34 +133,33 @@ export default class Helper {
                 return a - b;
             })
 
-            for (let i = 1; i <= numGames; i++) {
+            for (let i = 1; i <= gameCount; i++) {
 
-                const tr = document.createElement("tr")
-                tr.setAttribute("id", `game_${i}`)
-                tr.setAttribute("class", 'game')
-
-                const game = data ? data[`game${i}`] : null
+                const gameDiv = document.createElement("div")
+                gameDiv.setAttribute("id", `game_${i}`)
+                gameDiv.setAttribute("class", 'game')
 
                 for (let j = 1; j <= 7; j++) {
-                    const td = document.createElement("td")
-                    td.setAttribute("id", `game_${i}_${j}`)
-                    td.innerHTML = Config.exportObject[`game${i}`].numbers[j - 1]
-                    tr.appendChild(td)
+                    const span = document.createElement("span")
+                    span.setAttribute("id", `game_${i}_${j}`)
+                    span.setAttribute("class", `number`)
+                    span.innerHTML = Config.exportObject[`game${i}`].numbers[j - 1]
+                    gameDiv.appendChild(span)
                 }
 
-                const tdPB = document.createElement("td")
-                tdPB.setAttribute("id", `game_${i}_pb`)
-                tdPB.setAttribute("class", "td-pb")
+                const spanPB = document.createElement("span")
+                spanPB.setAttribute("id", `game_${i}_powerball`)
+                spanPB.setAttribute("class", "powerball")
 
-                tdPB.appendChild(Helper.buildPBDropdown(i, powerballArray[i - 1]))
-                tr.appendChild(tdPB)
+                spanPB.appendChild(Helper.buildPBDropdown(i, powerballArray[i - 1]))
+                gameDiv.appendChild(spanPB)
 
-                tr.appendChild(Helper.buildRefineInput(i))
+                gameDiv.appendChild(Helper.buildRefineInput(i))
 
 
                 Config.exportObject[`game${i}`].powerball = powerballArray[i - 1]
 
-                table.appendChild(tr)
+                numbersDiv.appendChild(gameDiv)
 
                 if (data && data[`game${i}`].range) {
                     document.getElementById(`refine_text_${i}`).value = json[`game${i}`].range
@@ -182,18 +170,18 @@ export default class Helper {
             if (data) {
 
                 if (data.isPowerballEditable) {
-                    if (document.querySelector(".pb-toggle i")) {
-                        document.querySelector(".pb-toggle i").style.color = '#000'
+                    if (document.querySelector(".powerball-toggle i")) {
+                        document.querySelector(".powerball-toggle i").style.color = '#000'
                     }
 
                 }
                 else {
-                    if (document.querySelector(".pb-toggle i")) {
-                        document.querySelector(".pb-toggle i").style.color = '#ccc'
+                    if (document.querySelector(".powerball-toggle i")) {
+                        document.querySelector(".powerball-toggle i").style.color = '#ccc'
                     }
                 }
 
-                document.querySelector(".generate").style.display = "inline-block"
+                document.querySelector(".render").style.display = "inline-block"
             }
 
             document.querySelector(".clear-games").style.display = "block"
@@ -266,7 +254,7 @@ export default class Helper {
 
         for (let j = 1; j <= 7; j++) {
             const id = `game_${game}_${j}`
-            document.getElementById(id).innerHTML = numArray[j-1]
+            document.getElementById(id).innerHTML = numArray[j - 1]
         }
 
         Config.exportObject[`game${game}`].numbers = numArray
@@ -324,6 +312,7 @@ export default class Helper {
                     }).then((result) => {
                         const path = result.uri
                         alert(`Data file saved to: ${path}`)
+                        // How to open a file
                         // cordova.plugins.fileOpener2.open(
                         //     path,
                         //     'application/json',
@@ -332,7 +321,6 @@ export default class Helper {
                         //         success: () => { }
                         //     }
                         // )
-
                     }, (error) => {
                         alert(error)
                     })
@@ -341,67 +329,20 @@ export default class Helper {
             catch (err) {
                 alert(err)
             }
-        }else {
+        } else {
             FileSaver.saveAs(blob, file)
         }
     }
-
-    /*
-    static saveData = async (data, type, fname) => {
-
-        try {
-            const fileType = type === 'json' ? 'application/json;charset=utf-8' : 'text/html;charset=utf-8',
-                file = fname + (type === 'json' ? '.json' : '.html'),
-                _data = type === 'json' ? JSON.stringify(data) : data,
-                blob = new Blob([_data], { type: fileType }),
-                base64 = btoa(JSON.stringify(data))
-
-            if (Capacitor.isNativePlatform()) {
-
-                await Filesystem.writeFile({
-                    path: file,
-                    data: base64,
-                    directory: Directory.Data,
-                    //encoding: Encoding.UTF8,
-                }).then((result) => {
-                    Filesystem.getUri({
-                        directory: Directory.Data,
-                        path: file
-                    }).then((getUriResult) => {
-                        const path = getUriResult.uri
-                        cordova.plugins.fileOpener2.open(
-                            path,
-                            'application/json',
-                            {
-                                error: () => alert(`File can't be opened. Please try installing a JSON Viewer.`),
-                                success: () => alert(`Games saved to: ${path}. File will be opened for viewing or saving.`)
-                            }
-                        )
-
-                    }, (error) => {
-                        alert(error)
-                    })
-                })
-
-            } else {
-                FileSaver.saveAs(blob, file)
-            }
-        }
-        catch (err) {
-            alert(err)
-        }
-    } */
-
     static formatPBElement = () => {
 
-        const numGames = document.querySelector(".number-games").value
-        if (numGames > 0) {
-            for (let i = 1; i <= numGames; i++) {
-                const tdPB = document.getElementById(`game_${i}_pb`),
+        const gameCount = document.querySelector(".game-count").value
+        if (gameCount > 0) {
+            for (let i = 1; i <= gameCount; i++) {
+                const spanPB = document.getElementById(`game_${i}_powerball`),
                     // We need original state before click so we use !(NOT) to revert to original
-                    PB = !Config.isPowerballEditable ? tdPB.firstChild.value : tdPB.firstChild.innerHTML
-                tdPB.innerHTML = ''
-                tdPB.appendChild(Helper.buildPBDropdown(i, PB))
+                    PB = !Config.isPowerballEditable ? spanPB.firstChild.value : spanPB.firstChild.innerHTML
+                spanPB.innerHTML = ''
+                spanPB.appendChild(Helper.buildPBDropdown(i, PB))
 
             }
         }

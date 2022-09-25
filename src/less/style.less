@@ -58,7 +58,7 @@ a {
   -moz-appearance: none;
   appearance: none;
   outline: none;
-  width: 60px;
+  width: 50px;
   text-align: center;
   font-weight: 500;
 }
@@ -78,7 +78,8 @@ a {
 }
 
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="search"] {
   .text-input();
 }
 
@@ -143,7 +144,6 @@ body {
 
           .app-name {
             position: relative;
-            // top: -6px;
             padding-left: 0.3rem;
           }
 
@@ -217,6 +217,7 @@ body {
 
   main {
     min-height: 100vh;
+    min-width: 380px;
 
     .body {
       padding: 4.5rem 1.5rem;
@@ -226,16 +227,8 @@ body {
         justify-content: space-between;
         align-items: center;
 
-        label,
-        input {
-          margin-right: 6px;
-        }
-
         i {
           font-size: 20px;
-        }
-
-        .fa-sync {
           position: relative;
           top: 2px;
         }
@@ -245,31 +238,62 @@ body {
         margin-top: 10px;
         padding-bottom: 60px;
 
-        table {
-          width: 100%;
+        div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
 
-          tr:not(.header) {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
+          &.header {
+            justify-content: space-between;
 
-            td {
+            span {
               width: 2rem;
               height: 2rem;
-              border: 1px solid @box-border;
+              margin: 8px 4px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-weight: 400;
+
+              &.refine {
+                width: 85px;
+              }
+
+              .powerball-toggle {
+                font-size: 14px;
+                position: relative;
+                left: 10px;
+              }
+            }
+          }
+
+          &.game {
+            .number,
+            .powerball {
+              width: 2rem;
+              height: 2rem;
               border-radius: 50%;
               margin: 8px 4px;
               display: flex;
               justify-content: center;
               align-items: center;
               font-weight: 500;
+              border: 1px solid #ccc;
             }
 
-            td.td-pb {
-              background: @pb-bg;
+            .number {
+              background: rgb(108, 108, 125);
+              background: radial-gradient(circle, rgba(108, 108, 125, 1) 8%, rgba(182, 182, 198, 1) 97%);
+              border: 1px solid @box-border;
+              color: #fff;
+            }
+
+            .powerball {
               color: @pb-text;
               font-weight: bold;
               width: 2.2rem;
+              background: rgb(115, 115, 236);
+              background: radial-gradient(circle, rgba(115, 115, 236, 1) 8%, rgba(0, 0, 6, 1) 75%);
 
               select {
                 border: 0;
@@ -284,18 +308,9 @@ body {
                   font-weight: 400;
                 }
               }
-
-              select + span::before {
-                content: "\f107";
-                font-family: "Font Awesome 5 Pro";
-              }
             }
 
-            td.td-refine {
-              border: 0;
-              width: auto;
-              padding: 0;
-              margin: 0;
+            .refine {
               white-space: nowrap;
               display: flex;
               justify-content: space-between;
@@ -306,47 +321,50 @@ body {
                 height: 28px;
               }
 
-              .refine-text {
+              input {
                 margin-right: 5px;
-              }
-            }
-          }
-
-          tr.header {
-            display: flex;
-            justify-content: space-around;
-            border-bottom: 1px dotted @box-border;
-            margin-bottom: 3px;
-            padding-bottom: 6px;
-
-            th {
-              font-weight: 400;
-              font-family: @font-secondary;
-              color: #666;
-
-              .pb-toggle {
-                display: inline-block;
-                font-size: 13px;
-
+                width: 60px;
               }
             }
           }
         }
       }
 
-      .import-filename {
+      .import-file {
         position: fixed;
         bottom: 55px;
         left: 0;
-        background-color: #ebebeb;;
+        background-color: #ebebeb;
         padding: 8px;
         border: 1px solid #ccc;
         font-size: 14px;
         width: 100%;
-        height: 40px;
+        height: 65px;
+        align-items: center;
+        padding-left: 20px;
 
-        .data-filename {
+        .data-file {
           font-weight: 500;
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    main {
+      .body {
+        .numbers {
+          div {
+            &.game {
+              .number,
+              .powerball {
+                margin: 4px 1px;
+              }
+            }
+          }
         }
       }
     }
