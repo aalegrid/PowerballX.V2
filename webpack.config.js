@@ -26,7 +26,8 @@ module.exports = {
     contentBase: './dist',
     port: 3012,
     publicPath: "http://localhost:3012/dist/",
-    hotOnly: true
+    hotOnly: true,
+    open: 'http://localhost:3012/dist/'
   },
   plugins: plugins,
   output: {
